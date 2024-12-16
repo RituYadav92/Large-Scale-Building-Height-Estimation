@@ -1,4 +1,4 @@
-## [How High are We? Large-Scale Building Height Estimation Using Sentinel-1 Sar and Sentinel-2 Msi Time Series] (https://www.sciencedirect.com/science/article/pii/S0034425724005820)
+## [How High are We? Large-Scale Building Height Estimation Using Sentinel-1 Sar and Sentinel-2 Msi Time Series](https://www.sciencedirect.com/science/article/pii/S0034425724005820)
 
 ### Building Footprint Segmentation & Height Estimation
 
