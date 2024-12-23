@@ -1,0 +1,68 @@
+---
+exp:  exp3
+seed: 42
+cv:   5
+
+loader:
+  train_batch:   4
+  val_batch:     1
+  num_workers:   16
+  pin_memory:    true
+  apply_augment: true
+  s1_index_list: all
+  s2_index_list: all
+  months_list:   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+
+trainer:
+  epochs:     150
+  accum_iter: 1
+  ckpt_freq:  5000
+  print_freq: 5000
+  early_stop: 20
+
+loss:
+  rec:
+    mode:   rmse_nonzero
+    weight: 1.0
+  iou:
+    mode:   iou
+    weight: 1.0
+  rseg:
+    mode:   DICE
+    weight: 0.8
+  seg:
+    mode:   DICE
+    weight: 0.8    
+
+optimizer:
+  mode:         adamw
+  lr:           0.0001
+  betas:        [0.9, 0.99]
+  amsgrad:      false
+  weight_decay: 0.1
+
+scheduler:
+  min_lr: 0.000001
+  warmup: 10
+
+model:
+  name: tswin_unet
+  params:
+    input_dim:      9
+    n_classes1:     1
+    n_classes2:     1
+    encoder_backbone: 'tf_efficientnet_b5_ns'
+    out_indices:    [0, 1, 2, 3]
+    return_maps:    False
+    n_head:         8
+    d_model:        256
+    d_k:            4
+    patch_size:     [1, 2, 2]
+    window_size:    [3, 7, 7]
+    ts_channels:    12
+    feature_size:   24
+    drop_rate:      0.0
+    attn_drop_rate: 0.0
+    drop_path_rate: 0.1
+    attn_version:   v2
+...
